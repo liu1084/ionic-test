@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="css/ionic.css" rel="stylesheet" />
+</head>
+<body ng-app="mySuperApp">
+<div ng-controller="ContentCtrl">
+    <ion-content
+            [scrollbar-y="true"]
+            [on-scroll-complete=""]
+            [scroll-event-interval=""]>
+
+        <div style="height: 2500px;">
+            <ul>
+                <li ng-repeat="country in countries">
+                    {{country}}
+                </li>
+            </ul>
+        </div>
+    </ion-content>
+</div>
+<script src="js/ionic.bundle.js"></script>
+<script>
+    var app = angular.module('mySuperApp', ['ionic']);
+    app.controller('ContentCtrl', function ($scope, $ionicScrollDelegate) {
+        $scope.countries = ['CN', 'JP', 'USA'];
+    });
+</script>
+</body>
+</html>

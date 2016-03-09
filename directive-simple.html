@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ng-app="myApp">
+E:
+<test>hello</test>
+A:
+<div test><span>hello2</span></div>
+C:
+<div class="test">hello3</div>
+
+<hr/>
+<div>
+    <test-transclude>
+        <div>transclude会把我取出来，放到ng-transclude中</div>
+    </test-transclude>
+</div>
+<hr/>
+<div>
+    <form>
+        <button>Send</button>
+        <button type="submit" size="large">Submit</button>
+    </form>
+</div>
+<script src="js/angular/angular.js"></script>
+<script>
+    var app = angular.module('myApp', []);
+    //restrict
+    app.directive('test', function () {
+        return {
+            /*
+             * E - 表示这个指令可以作为HTML标签使用就像上面的<test></test>，替换的时候会把整个标签都替换；
+             * A - 表示这个指令可以作为属性使用，替换的时候会替换到属性层的内层
+             * C - 表示这个指令可以作为HTML标签的类使用，替换的时候会替换到包含类的内层
+             * */
+            scope: {},
+            restrict: 'EAC', //
+            template: '<div>替换test标签</div>',
+            replace: true //如果设置为false，那么就不会替换test标签
+        };
+    });
+
+    //transclude
+    app.directive('testTransclude', function () {
+        return {
+            restrict: 'E',
+            template:
+            '<div>' +
+                '<div ng-transclude></div>' +
+                '<div ng-transclude></div>' +
+            '</div>',
+            transclude: true
+        };
+    });
+
+    //compile
+    app.directive('button', function () {
+        return {
+            restrict: 'E',
+            link: function(scope, element, attributes, controller){
+                if (attributes.type === 'submit'){
+                    element.addClass('btn-primary');
+                }
+
+                if (attributes.size){
+                    element.addClass('btn-' + attributes.size);
+                }
+
+                element.addClass('btn');
+            }
+        };
+    });
+
+</script>
+</body>
+</html>

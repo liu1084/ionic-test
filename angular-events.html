@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ng-app="myApp">
+<div></div>
+<button ng-click="clickMe(item, $event)">click</button>
+<script src="js/angular/angular.js"></script>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller(function($scope){
+        $scope.clickMe = function(item, $event){
+            console.log('click' + item + ' ' + $event.clientX + ',' + $event.clientY);
+        };
+    });
+</script>
+</body>
+</html>

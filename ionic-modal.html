@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="css/ionic.css" rel="stylesheet" />
+</head>
+<body ng-app="mySuperApp">
+<div ng-controller="ModalCtrl">
+<button ng-click="openModal()">open</button>
+</div>
+<script src="js/ionic.bundle.js"></script>
+<script>
+    var app = angular.module('mySuperApp', ['ionic']);
+    app.controller('ModalCtrl', function ($scope, $ionicModal) {
+        $ionicModal.fromTemplateUrl('my-modal.html', {
+            scope: $scope,
+            animation: 'slide-in-down'
+        }).then(function(modal) {
+            $scope.modal = modal;
+        });
+        $scope.openModal = function() {
+            $scope.modal.show();
+        };
+        $scope.closeModal = function() {
+            $scope.modal.hide();
+        };
+        //Cleanup the modal when we're done with it!
+        $scope.$on('$destroy', function() {
+            $scope.modal.remove();
+        });
+        // Execute action on hide modal
+        $scope.$on('modal.hidden', function() {
+            // Execute action
+        });
+        // Execute action on remove modal
+        $scope.$on('modal.removed', function() {
+            // Execute action
+        });
+    });
+</script>
+<script id="my-modal.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar>
+            <h1 class="title">My Modal title</h1>
+        </ion-header-bar>
+        <ion-content>
+            Hello!
+        </ion-content>
+        <ion-footer-bar>
+            <button ng-click="closeModal()">I know this</button>
+        </ion-footer-bar>
+    </ion-modal-view>
+</script>
+</body>
+</html>

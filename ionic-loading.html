@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="css/ionic.css" rel="stylesheet" />
+</head>
+<body ng-app="mySuperApp">
+<div ng-controller="LoadingCtrl">
+    <ion-header-bar align-title="left" no-tap-scroll="false" class="bar-positive">
+        <div class="buttons">
+            <button class="button" ng-click="show()">show loading</button>
+        </div>
+        <h1 class="title">Title!</h1>
+        <div class="buttons">
+            <button class="button" ng-click="hide()">hide loading</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div style="height: 1200px;">Some content!</div>
+    </ion-content>
+    <ion-footer-bar class="bar-positive"></ion-footer-bar>
+</div>
+<script src="js/ionic.bundle.js"></script>
+<script>
+    var app = angular.module('mySuperApp', ['ionic']);
+    app.controller('LoadingCtrl', function ($scope, $ionicLoading) {
+        $scope.show = function(){
+            $ionicLoading.show({
+                template: 'loading...',
+                duration: 2000
+            });
+        };
+        $scope.hide = function(){
+            $ionicLoading.hide();
+        };
+    });
+</script>
+</body>
+</html>

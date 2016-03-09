@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="css/ionic.css" rel="stylesheet" />
+</head>
+<body ng-app="mySuperApp">
+<div ng-controller="BackDropCtrl">
+    <button ng-click="action()">open</button>
+</div>
+<script src="js/ionic.bundle.js"></script>
+<script>
+    var app = angular.module('mySuperApp', ['ionic']);
+    app.controller('BackDropCtrl', function ($scope, $ionicBackdrop, $timeout, $rootScope) {
+        $scope.action = function() {
+            $ionicBackdrop.retain();
+            $timeout(function() {
+                $ionicBackdrop.release();
+            }, 1000);
+        };
+
+        // Execute action on backdrop disappearing
+        $scope.$on('backdrop.hidden', function() {
+            // Execute action
+        });
+
+        // Execute action on backdrop appearing
+        $scope.$on('backdrop.shown', function() {
+            // Execute action
+        });
+
+    });
+</script>
+</body>
+</html>

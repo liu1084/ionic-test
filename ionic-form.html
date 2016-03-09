@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="css/ionic.css" rel="stylesheet" />
+</head>
+<body ng-app="mySuperApp">
+<div ng-controller="FormCtrl">
+    <ion-checkbox ng-model="isChecked">Checkbox Label</ion-checkbox>
+</div>
+<script src="js/ionic.bundle.js"></script>
+<script>
+    var app = angular.module('mySuperApp', ['ionic']);
+    app.controller('FormCtrl', function ($scope, $ionicScrollDelegate) {
+        $scope.isChecked = true;
+    });
+</script>
+</body>
+</html>
